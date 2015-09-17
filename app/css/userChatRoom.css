@@ -1,0 +1,83 @@
+#userChatRoom{
+    margin-top: 20px;
+    font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+.chatRoomContainer{
+    height: 600px;
+}
+.chatRoomContainer > div{
+    height: 100%;
+}
+#userInfoContainer{
+    background-color: #2e3238;
+    color:#ffffff;
+}
+.userProfile img{
+    width:50px;
+    height: 50px;
+}
+.userRoomList img{
+    width:40px;
+    height: 40px;
+}
+.messageItem img{
+    width:40px;
+    height: 40px;
+}
+.userProfile, .userRoomItem, .addRoom{
+    padding:10px 0px;
+    border-bottom: 1px solid rgb(41, 44, 51);
+}
+.addRoom{
+    text-align: center;
+}
+#currentRoomContainer{
+    background-color: rgb(238, 238, 238);
+}
+.roomInfo{
+    padding:18px;
+    text-align: center;
+    border-bottom:1px solid #d6d6d6;
+}
+.messageItem{
+    padding-top: 10px;
+}
+.messageItem img,.messageItem .messageContent{
+    float:left;
+}
+.clearfix:before,
+.clearfix:after{
+    content: "";
+    display: table;
+}
+.clearfix:after{
+    clear:both;
+}
+.clearfix{
+    clear: both;
+    *zoom: 1;
+}
+.messageContent{
+    padding-left: 10px;
+}
+.messageContent h5{
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+.messageContent p{
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+}
+.messageGenerateBox{
+    border-top: 1px solid #d6d6d6;
+    padding:10px;
+}
+.messageGenerateBox >*{
+    vertical-align: bottom;
+}
+.messageGenerateBox textarea{
+    background-color:rgb(238, 238, 238) ;
+    width: 90%;
+    height: 80px;
+}

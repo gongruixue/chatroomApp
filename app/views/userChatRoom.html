@@ -1,0 +1,44 @@
+<div id="userChatRoom" class="container">
+    <div class="row chatRoomContainer">
+        <div id="userInfoContainer" class="col-md-2">
+            <div class="userProfile">
+                <img ng-src="/images/portrait4.jpg" class="img-circle" />
+                <a href="#">{{user.name}}</a>
+            </div>
+            <div class="userRoomList" >
+                <div ng-repeat="room in user.rooms" ng-click="changeCurrentRoom(room)" class="userRoomItem">
+                    <img ng-src="{{room.picture}}" />
+                    <span>{{room.name}}</span>
+                </div>
+            </div>
+            <div class="addRoom">
+                <button type="button" class="btn btn-default">创建聊天组</button>
+            </div>
+        </div>
+        <div id="currentRoomContainer" class="col-md-8">
+            <div class="roomInfo">
+                <span>{{currentRoom.name}}</span>
+            </div>
+            <div class="messageContainer">
+                <div ng-repeat="message in currentRoom.messages" ng-init="owner=currentRoom.members[message.ownerId]" class="clearfix messageItem">
+                    <img ng-src="{{owner.portrait}}" />
+                    <div class="messageContent">
+                        <h5>{{owner.name}}</h5>
+                        <p>{{message.content}}</p>
+                    </div>
+                </div>
+                <div class="messageGenerateBox">
+                    <textarea ng-model="newMessage"></textarea>
+                    <button ng-click="addNewMessage()" class="btn btn-default">Send</button>
+                </div>
+            </div>
+        </div>
+        <div id="memberInfoContainer" class="col-md-2">
+            <div class="memberList">
+                <div ng-repeat="member in currentRoom.members">
+                    <span>{{member.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,11 @@
 var chatRoomControllers=angular.module('chatRoomControllers',[]);
-var socket=io();
+//var socket=io();
 
-chatRoomControllers.controller('userRoomController',['$scope',
-    function($scope){
-        socket.on('message',function(data){
-            $scope.message=data;
-        });
+chatRoomControllers.controller('userRoomController',['$scope','user','room',
+    function($scope,user,room){
+        //socket.on('message',function(data){
+        //    $scope.message=data;
+        //});
+        $scope.user=user.get();
+        $scope.currentRoom=room.get();
     }]);
