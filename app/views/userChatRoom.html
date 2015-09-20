@@ -2,17 +2,39 @@
     <div class="row chatRoomContainer">
         <div id="userInfoContainer" class="col-md-2">
             <div class="userProfile">
-                <img ng-src="/images/portrait4.jpg" class="img-circle" />
+                <img ng-src={{user.portrait}} class="img-circle" />
                 <a href="#">{{user.name}}</a>
             </div>
             <div class="userRoomList" >
-                <div ng-repeat="room in user.rooms" ng-click="changeCurrentRoom(room)" class="userRoomItem">
+                <div ng-repeat="room in rooms" ng-click="currentRoom.id!==room.id && changeCurrentRoom(room)" class="userRoomItem">
                     <img ng-src="{{room.picture}}" />
                     <span>{{room.name}}</span>
                 </div>
             </div>
             <div class="addRoom">
-                <button type="button" class="btn btn-default">创建聊天组</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createRoom">创建聊天组</button>
+            </div>
+            <div class="joinRoom">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#joinRoom">加入聊天组</button>
+            </div>
+        </div>
+        <div class="modal fade" id="createRoom" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">创建新的聊天室</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>名称<input ng-model="newRoomName"></label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="dialog .modal('hide');createNewRoom()">创建</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="currentRoomContainer" class="col-md-8">
@@ -20,7 +42,7 @@
                 <span>{{currentRoom.name}}</span>
             </div>
             <div class="messageContainer">
-                <div ng-repeat="message in currentRoom.messages" ng-init="owner=currentRoom.members[message.ownerId]" class="clearfix messageItem">
+                <div ng-repeat="message in currentRoom.messages" ng-init="owner=members[message.ownerId]" class="clearfix messageItem">
                     <img ng-src="{{owner.portrait}}" />
                     <div class="messageContent">
                         <h5>{{owner.name}}</h5>
@@ -35,7 +57,7 @@
         </div>
         <div id="memberInfoContainer" class="col-md-2">
             <div class="memberList">
-                <div ng-repeat="member in currentRoom.members">
+                <div ng-repeat="member in members">
                     <span>{{member.name}}</span>
                 </div>
             </div>

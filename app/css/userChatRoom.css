@@ -28,7 +28,7 @@
     padding:10px 0px;
     border-bottom: 1px solid rgb(41, 44, 51);
 }
-.addRoom{
+.addRoom ,.joinRoom{
     text-align: center;
 }
 #currentRoomContainer{
@@ -80,4 +80,32 @@
     background-color:rgb(238, 238, 238) ;
     width: 90%;
     height: 80px;
+}
+
+.formContainer{
+    margin-top: 100px;
+}
+.registerContainer{
+    border: 1px solid;
+    height: 400px;
+}
+.registerContainer img{
+    width:170px ;
+    height: 170px;
+}
+.registerContainer > *,.loginContainer > *{
+    margin-top: 20px;
+}
+.formContainer input {
+    width:100%;
+    height: 32px;
+}
+.registerContainer button{
+    width: 100%;
+}
+.linkToLogin,.linkToRegister{
+    text-align: right;
+}
+.loginContainer{
+    margin-top: 130px;
 }

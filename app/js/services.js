@@ -1,12 +1,12 @@
 var chatRoomServices=angular.module('chatRoomServices',['ngResource']);
 chatRoomServices
-    .factory('user',['$resource',
+    .factory('User',['$resource',
     function($resource){
-        return $resource('/user/:id',{id:'123'});
+        return $resource('/data/user/:id');
 }])
-    .factory('room',['$resource',
+    .factory('Room',['$resource',
     function($resource){
-        return $resource('/room/:id',{id:'123'});
+        return $resource('/data/room/:id');
 }]);
     //.factory('userRooms',['$resource',function($resource){
     //    return $resource('/user/rooms');
