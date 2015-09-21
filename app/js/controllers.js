@@ -1,7 +1,7 @@
 var chatRoomControllers=angular.module('chatRoomControllers',['ngFileUpload']);
 var socket=io();
 chatRoomControllers.
-    controller('userRoomController',['$scope','$routeParams','$location','$window','User','Room',
+    controller('userRoomController',['$scope','$routeParams','$window','User','Room',
     function($scope,$routeParams,$location,$window,User,Room){
         var id=$routeParams.id;
         var result=User.get({id:id},function(){
@@ -19,7 +19,6 @@ chatRoomControllers.
                 picture:'/images/portrait3.png'
             });
             newRoom.$save(function(){
-                //$location.path('/login');
                 $window.location.reload();
             });
         };
@@ -45,8 +44,8 @@ chatRoomControllers.
             socket.emit('newMessage',$scope.currentRoom.id,newMessage);
         }
     }]).
-    controller('loginController',['$scope','$location','Upload','User',
-    function($scope,$location,Upload,User){
+    controller('loginController',['$scope','$window','$http','Upload','User',
+    function($scope,$window,$http,Upload,User){
         $scope.defaultPortrait="/images/unonwnUser1.jpg";
         $scope.showDefault=true;
         $scope.changePortrait=function($file){
@@ -58,20 +57,28 @@ chatRoomControllers.
                 //上传头像成功后创建用户
                 var newUser=new User({
                     name:$scope.newUserName,
+                    password:$scope.password,
                     portrait:imgUrl
                 });
                 newUser.$save(function(data,resHeader){
                     //成功创建用户，重定向到用户主页
-                    $location.path('/user/'+data.uId+'/home');
+                    $window.location.href='/user/'+data.uId+'/home';
                 });
             },function(){
                 //上传头像失败
                 $scope.errMessage="上传头像失败，请稍后重试";
             });
         };
-        $scope.goToHomepage=function(){
-            var uId=$scope.userName;
-            $location.path('/user/'+uId+'/home');
+        $scope.login=function(){
+            var user={
+                name:$scope.username,
+                password:$scope.password
+            };
+            $http.post('/login',user).
+                success(function(data){
+                    $window.location.href='/user/'+data.uId+'/home';
+                })
+                .error(function(){});
         };
 
         function handlePortrait(success,error){

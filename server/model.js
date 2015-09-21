@@ -66,6 +66,15 @@ model.user={
         });
         return result;
     },
+    auth:function(postUser,cb){
+        for(var id in cache.users){
+            var user=cache.users[id];
+            if(user.name===postUser.name&&user.password===postUser.password){
+                return cb(true,user.id);
+            }
+        }
+        return cb(false);
+    },
     joinRoom:function(id,roomId){
         cache.users[id].roomList.push(roomId);
     }
